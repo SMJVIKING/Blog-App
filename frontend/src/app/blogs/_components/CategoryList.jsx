@@ -1,13 +1,14 @@
 import Link from "next/link";
 
 async function CategoryList() {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/category/list`);
+  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/category/list`,{
+    cashe:"force-cache",
+  });
   const {
     // destructure:
     data: { categories },
     // it's an await promise:
   } = await res.json();
-  console.log(categories);
 
   return (
     <ul className="space-y-4">

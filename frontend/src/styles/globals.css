@@ -125,7 +125,7 @@
     width: 20px;
     aspect-ratio: 1;
     border-radius: 50%;
-    border: 2px solid rgb(var(--color-primary-200));
+    border: 2.2px solid rgb(var(--color-primary-700));
     border-right-color: transparent;
     animation: rotate 1s infinite linear;
   }

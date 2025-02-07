@@ -47,6 +47,7 @@ export default {
       fontFamily: {
         sans: ["var(--font-vazir)", ...fontFamily.sans],
       },
+      // add some property to container class :
       container: {
         center: true,
         padding: "1rem",

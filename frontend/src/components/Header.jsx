@@ -1,3 +1,6 @@
+"use client";
+
+import { useAuth } from "@/context/AutContext";
 import NavLink from "./NavLink";
 
 const navLinks = [
@@ -14,11 +17,14 @@ const navLinks = [
 ];
 
 function Header() {
-  const user = false;
-  
+  const { user, isLoading } = useAuth();
+
   return (
-    <header className=" shadow-md bg-inherit mb-10 sticky top-0 transition-all duration-200 border-b border-b-secondary-300 z-10 ">
-      <nav className="container xl:max-w-screen-xl">
+    <header
+      className={`shadow-md bg-inherit mb-10 sticky top-0 transition-all duration-200 border-b border-b-secondary-300 z-10
+    ${isLoading ? "blur-sm opacity-70" : "blur-0 opacity-100"}`}
+    >
+      <nav className="container xl:max-w-screen-2xl">
         <ul className="flex items-center text-secondary-400 justify-between py-2">
           <div className="flex items-center gap-x-10">
             {navLinks.map((navLink) => {
