@@ -9,6 +9,7 @@ import Link from "next/link";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 
+// use yup package from react-hook-form for autherization :
 const schema = yup
   .object({
     email: yup.string().email("ایمیل نامعتبر است").required("ایمیل الزامی است"),

@@ -1,11 +1,10 @@
-import Link from "next/link";
 import CoverImage from "./CoverImage";
 import { ClockIcon } from "@heroicons/react/24/outline";
 import Author from "./Author";
 import PostInteraction from "./PostInteraction";
-import { getPosts } from "@/services/postServices";
+import Link from "next/link";
 
-async function PostList() {
+async function PostList({posts}) {
   // const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/post/list`);
   // const {
   //   // destructure:
@@ -13,12 +12,13 @@ async function PostList() {
   //   // it's an await promise:
   // } = await res.json();
 
-  const posts = await getPosts();
-
   return posts.length > 0 ? (
     <div className="grid grid-cols-12 gap-8">
       {posts.map((post) => (
-        <div className="col-span-12 sm:col-span-6 lg:col-span-4 border border-secondary-100 p-4 rounded-xl">
+        <div
+          key={post._id}
+          className="col-span-12 sm:col-span-6 lg:col-span-4 border border-secondary-200 p-4 rounded-xl shadow-md"
+        >
           {/* post image: */}
           <CoverImage {...post} />
 

@@ -2,8 +2,8 @@
 
 import { getUserApi, signinApi, signupApi } from "@/services/authService";
 import { useRouter } from "next/navigation";
-import { createContext, useContext,useEffect,useReducer } from "react";
-import { resolve } from "styled-jsx/css";
+import { createContext, useContext, useEffect, useReducer } from "react";
+import toast from "react-hot-toast";
 
 const AuthContext = createContext();
 
@@ -57,6 +57,10 @@ export default function AuthProvider({ children }) {
 
     try {
       const { user, message } = await signupApi(values);
+      
+
+      console.log(signupApi);
+      
       dispatch({ type: "signup", payload: user });
       toast.success(message);
       router.push("/profile");
@@ -67,34 +71,36 @@ export default function AuthProvider({ children }) {
     }
   }
 
+  // get user data :
   async function getUser() {
     dispatch({ type: "loading" });
 
     try {
-      await new Promise((resolve)=> setTimeout(resolve,3000));
+      await new Promise((resolve) => setTimeout(resolve, 3000));
       const { user } = await getUserApi();
       dispatch({ type: "user/loaded", payload: user });
-      console.log(user);
-      
     } catch (error) {
       const errorMsg = error?.response?.data?.message;
       dispatch({ type: "rejected", payload: errorMsg });
-      toast.error(errorMsg);
     }
   }
-
+  // =>
+  // برای استفاده کردن از فانکشن بالایی نیازه که  اونو داخل ی یوزافکت بزاریم :
+  // تو یوزافکت هم نمیشه ی فانکشن اسینک رو فراخوانی کردو
+  // هم اینکه نمیشه ارو  فانکشن داخل یوز افکت رو اسینک کرد
+  // خب پس راه راه حل چیه ؟
+  // باید داخلش ی اسینک فانکشن جدا تعریف کنی :
   useEffect(() => {
-    // تو یوزافکت تو نکست => نمیتونی ارو فانکشن داخلش رو تبدیل ب اسینک فانکشن کنی
-    // باید داخلش ی اسینک فانکشن جدا تعریف کنی :
-      async function fetchData() {
-        await getUser();
-      }
-      fetchData();
-    },[]);
-
+    async function fetchData() {
+      await getUser();
+    }
+    fetchData();
+  }, []);
 
   return (
     <AuthContext.Provider
+      // اینجا ما باید "استیت و دیسپچ" پاس بدیم ولی ب جای اینکه اینکارو کنیم و کلی
+      // کد توی "کامپوننت ها تکراری" بشه => خود "ساین این و ساین اپو" میاریم اینجا مینویسیم و اونارو پاس میدیم
       value={{ user, isAuthenticated, isLoading, error, signin, signup }}
     >
       {children}
