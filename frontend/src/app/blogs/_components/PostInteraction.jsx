@@ -26,16 +26,32 @@ function PostInteraction({ post }) {
   // اسم فایل : setCookieOnReq.js
   // اینجوری کوکی هارو میگیریم میفرستیم سمت بک اند => مشخص میشه کی چیو لایک کرده
 
+  // const likeHandler = async (postId) => {
+  //   try {
+  //     const { message } = await likePostApi(postId);
+  //     toast.success(message);
+  //     // refresh liked post outomaticly:
+  //     router.replace(router.asPath);
+  //   } catch (error) {
+  //     toast.error(error?.response?.data?.message);
+  //   }
+  // };
+
+
   const likeHandler = async (postId) => {
     try {
-      const { message } = await likePostApi(postId);
-      toast.success(message);
-      // refresh liked post outomaticly:
-      router.refresh();
+      const response = await likePostApi(postId);
+      console.log("Response from API:", response); // مقدار جدید isLiked اینجا باید دیده بشه
+  
+      toast.success(response.message);
+      router.replace(router.asPath); // مقدار جدید رو فورس کن
     } catch (error) {
+      console.error("Error in likeHandler:", error);
       toast.error(error?.response?.data?.message);
     }
   };
+  
+
 
   return (
     <div className="flex items-center justify-between mt-4">
@@ -47,9 +63,10 @@ function PostInteraction({ post }) {
       </div>
 
       <div className="flex gap-x-2">
-        <ButtonIcon variant="red" onClick={() => likeHandler(post.id)}>
+        <ButtonIcon variant="red" onClick={() => likeHandler(post._id)}>
           {post.isLiked ? <SolidHeartIcon /> : <HeartIcon />}
         </ButtonIcon>
+
         <ButtonIcon variant="primary">
           <BookmarkIcon />
         </ButtonIcon>

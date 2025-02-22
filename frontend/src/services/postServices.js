@@ -21,5 +21,5 @@ export async function getPosts(queries,options) {
 }
 
 export async function likePostApi(postId) {
-  return http.post(`post/like/${postId}`).then(({ data }) => data.data);
+  return http.post(`/post/like/${postId}`).then(({ data }) => data.data);
 }

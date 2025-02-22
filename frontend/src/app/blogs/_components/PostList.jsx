@@ -4,7 +4,7 @@ import Author from "./Author";
 import PostInteraction from "./PostInteraction";
 import Link from "next/link";
 
-async function PostList({posts}) {
+async function PostList({ posts }) {
   // const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/post/list`);
   // const {
   //   // destructure:

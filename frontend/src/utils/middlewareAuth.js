@@ -7,8 +7,8 @@ export async function middlewareAuth(req) {
     credentials: "include",
     headers: {
       Cookie: `accessToken=${accessToken}; refreshToken=${refreshToken};`,
-      //   Cookie: `${accessToken?.name}=${accessToken?.value};
-      //   ${refreshToken?.name}=${refreshToken?.value};`,
+        // Cookie: `${accessToken?.name}=${accessToken?.value};
+        // ${refreshToken?.name}=${refreshToken?.value}`,
     },
   };
 

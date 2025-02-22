@@ -2,7 +2,8 @@ import { getPostBySlug, getPosts } from "@/services/postServices";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import RelatedPost from "../_components/RelatedPost";
-import PostComment from "../_components/comment/PostComment";
+import BlogComments from "../_components/comments/BlogComments";
+
 
 // error handeling in static route:
 export const dynamicParams = false;
@@ -16,14 +17,16 @@ export async function generateStaticParams() {
 
 // dynamic metadata :
 export async function generateMetadata({ params }) {
-  const post = await getPostBySlug(params.postSlug);
+  const {postSlug} = await params;
+  const post = await getPostBySlug(postSlug);
   return {
     title: `پست ${post.title}`,
   };
 }
 
 async function SinglePost({ params }) {
-  const post = await getPostBySlug(params.postSlug);
+  const {postSlug} = await params;
+  const post = await getPostBySlug(postSlug);
 
   if (!post) notFound();
 
@@ -44,7 +47,7 @@ async function SinglePost({ params }) {
         />
       </div>
       {post.related.length > 0 && <RelatedPost posts={post.related} />}
-      <PostComment post={post} />
+      <BlogComments post={post} />
     </div>
   );
 }

@@ -1,28 +1,55 @@
 "use client";
 
+import { useAuth } from "@/context/AutContext";
 import Button from "@/ui/Button";
-import { QuestionMarkCircleIcon } from "@heroicons/react/24/outline";
-import classNames from "classnames";
-import Comment from "./Comment";
 import Modal from "@/ui/Modal";
+import { QuestionMarkCircleIcon } from "@heroicons/react/24/outline";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
+import CommentForm from "./CommentForm";
+import Comment from "./Comment";
+import classNames from "classnames";
 
 
-function PostComment({ post: { comments, _id: postId } }) {
-const[open,setOpen]=useState(false);
+function BlogComments({ post: { comments, _id: postId } }) {  
+  const { user } = useAuth();
+  const [isOpen, setOpen] = useState(false);
+  const [parent, setParent] = useState(null);
+  const router = useRouter();
+
+  const addNewCommentHandler = (parent) => {
+    if (!user) {
+      router.push("/signin");
+      return;
+    }
+    setParent(parent);
+    setOpen(true);
+  };
 
   return (
     <div className="mb-10">
-        <Modal open={open}/>
       <div className="flex flex-col items-center lg:flex-row justify-between gap-y-3 mb-8">
         <h2 className="text-2xl font-bold text-secondary-800">نظرات</h2>
         <Button
+          onClick={() => addNewCommentHandler()}
           variant="outline"
           className="flex items-center py-2"
         >
           <QuestionMarkCircleIcon className="w-4 ml-2" />
           <span>ثبت نظر جدید</span>
         </Button>
+        <Modal
+          title={parent ? "پاسخ به نظر" : "نظر جدید"}
+          description={parent ? parent.user.name : "نظر خود را وارد کنید"}
+          open={isOpen}
+          onClose={() => setOpen(false)}
+        >
+          <CommentForm
+            postId={postId}
+            parentId={parent ? parent._id : null}
+            onClose={() => setOpen(false)}
+          />
+        </Modal>
       </div>
       <div className="space-y-8 post-comments bg-secondary-0 rounded-xl py-6 px-3 lg:px-6 ">
         {comments.length > 0 ? (
@@ -32,7 +59,7 @@ const[open,setOpen]=useState(false);
                 <div className="border border-secondary-200 rounded-xl p-2 sm:p-4 mb-3">
                   <Comment
                     comment={comment}
-                    // onAddComment={() => addNewCommentHandler(comment)}
+                    onAddComment={() => addNewCommentHandler(comment)}
                   />
                 </div>
                 <div className="post-comments__answer mr-2 sm:mr-8 space-y-3">
@@ -63,4 +90,4 @@ const[open,setOpen]=useState(false);
     </div>
   );
 }
-export default PostComment;
+export default BlogComments;

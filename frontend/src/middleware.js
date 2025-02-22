@@ -11,7 +11,7 @@ export async function middleware(req) {
 
   if (pathname.startsWith("/profile")) {
     const user = await middlewareAuth(req);
-    if (!user) return NextResponse.redirect(new URL(`/signin`, req.nextUrl));
+    if (user) return NextResponse.redirect(new URL(`/signin`, req.nextUrl));
   }
 }
 

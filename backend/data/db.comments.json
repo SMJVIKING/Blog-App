@@ -1,8 +1,8 @@
 [
   {
     "_id": "66b14ddf7c007974fef9d25a",
-    "user": "66a0e4b88dfc01025fc0550d",
-    "post": "66a0fe9bd9fd48041dc0de2c",
+    "user": "67a9af723e0a07b5495a8eb0",
+    "post": "67a9afe53e0a07b5495a8eb3",
     "content": {
       "text": "first comment\r\n"
     },
@@ -15,8 +15,8 @@
   },
   {
     "_id": "66b14dec7c007974fef9d263",
-    "user": "66a0e4b88dfc01025fc0550d",
-    "post": "66a0fe9bd9fd48041dc0de2c",
+    "user": "679b673702e7d82cccabe399",
+    "post": "67a9aee43e0a07b5495a8eac",
     "content": {
       "text": "second comment base"
     },
@@ -24,8 +24,8 @@
     "openToComment": true,
     "answers": [
       {
-        "user": "66a0e4b88dfc01025fc0550d",
-        "post": "66a0fe9bd9fd48041dc0de2c",
+        "user": "67a9af723e0a07b5495a8eb0",
+        "post": "67a9aee43e0a07b5495a8eac",
         "content": {
           "text": "third comment reply"
         },
@@ -42,17 +42,17 @@
   },
   {
     "_id": "66b719c18517385605105368",
-    "user": "66a0e4b88dfc01025fc0550d",
-    "post": "66b70ee08517385605104ffa",
+    "user": "679b673702e7d82cccabe399",
+    "post": "679b772702e7d82cccabe3d3",
     "content": {
-      "text": "کار فریلنسری دستمزدش چطوره؟\r\n"
+      "text": "کار برنامه نویسی دستمزدش چطوره؟\r\n"
     },
     "status": 2,
     "openToComment": true,
     "answers": [
       {
-        "user": "66a0e4b88dfc01025fc0550d",
-        "post": "66b70ee08517385605104ffa",
+        "user": "67a9ab983e0a07b5495a8e4c",
+        "post": "679b772702e7d82cccabe3d3",
         "content": {
           "text": "میانگین ساعتی ۱۵۰-۲۰۰ هزارتومان"
         },
@@ -69,8 +69,8 @@
   },
   {
     "_id": "66b71c2c85173856051053fc",
-    "user": "66a0e4b88dfc01025fc0550d",
-    "post": "66b708288517385605104f33",
+    "user": "67a9ab983e0a07b5495a8e4c",
+    "post": "67a9ad3f3e0a07b5495a8e90",
     "content": {
       "text": "تاریخ خوبه یا جغرافیا ؟"
     },
@@ -78,8 +78,8 @@
     "openToComment": true,
     "answers": [
       {
-        "user": "66a0e4b88dfc01025fc0550d",
-        "post": "66b708288517385605104f33",
+        "user": "67a9af723e0a07b5495a8eb0",
+        "post": "67a9ad3f3e0a07b5495a8e90",
         "content": {
           "text": "قطعا ریاضیات!"
         },

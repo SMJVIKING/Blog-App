@@ -8,7 +8,7 @@ export default function Search() {
   // ی هوک ک کمک میکنه تمام کوئری استرینگ هایی ک تو این یو ار ال هست روبتونیم بخونیم
   const searchParams = useSearchParams();
   const router = useRouter();
-  const pathName = usePathname();
+  const pathName = usePathname(); //url موجود
 
   const formSubmit = (e) => {
     e.preventDefault();
@@ -24,7 +24,7 @@ export default function Search() {
       // delete key :
       newParams.delete("search");
     }
-    router.push(`${pathName}?${newParams.toString()}`, { scroll: false });
+    router.push(`${pathName} ? ${newParams.toString()}`, { scroll: false });
   };
 
   return (

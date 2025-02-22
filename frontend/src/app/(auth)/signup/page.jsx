@@ -32,8 +32,7 @@ function SignUp() {
     mode: "onTouched",
   });
 
-
- const signup= useAuth();
+  const signup = useAuth();
 
   const onSubmit = async (values) => {
     await signup(values);

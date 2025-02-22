@@ -57,10 +57,6 @@ export default function AuthProvider({ children }) {
 
     try {
       const { user, message } = await signupApi(values);
-      
-
-      console.log(signupApi);
-      
       dispatch({ type: "signup", payload: user });
       toast.success(message);
       router.push("/profile");

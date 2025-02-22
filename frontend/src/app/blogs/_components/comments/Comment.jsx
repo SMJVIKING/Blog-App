@@ -2,18 +2,17 @@ import Avatar from "@/ui/Avatar";
 import Button from "@/ui/Button";
 import { ArrowUturnRightIcon } from "@heroicons/react/24/outline";
 
-
 function Comment({ comment, onAddComment }) {
   return (
     <>
       <div className="flex items-center justify-between mb-5 border-b border-b-secondary-200/60 pb-2">
         <div className="flex items-center ">
-          <Avatar
+          {/* <Avatar
             height={34}
             width={34}
             alt={comment.user?.name || "-"}
             src={comment.user.avatarUrl}
-          />
+          /> */}
           <div className="text-sm w-full text-secondary-600">
             <span className="font-bold block mb-1">{comment.user.name}</span>
             <span className="block text-secondary-500 text-xs">
@@ -24,7 +23,7 @@ function Comment({ comment, onAddComment }) {
         <div>
           {comment.openToComment && (
             <Button
-              // onClick={onAddComment}
+              onClick={onAddComment}
               variant="secondary"
               className="text-sm flex gap-x-1 p-1 rounded-lg text-secondary-500 bg-secondary-200"
             >
