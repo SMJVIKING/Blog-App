@@ -1,6 +1,6 @@
-import Header from "@/components/Header";
 import vazirFont from "@/constants/localFont";
 import AuthProvider from "@/context/AutContext";
+import ReactQueryProvider from "@/providers/ReactQueryProvider";
 import "@/styles/globals.css";
 import { Toaster } from "react-hot-toast";
 
@@ -16,16 +16,14 @@ export default function RootLayout({ children }) {
   return (
     <html lang="fa" dir="rtl">
       <body className={`${vazirFont.variable} font-sans min-h-screen`}>
-        <AuthProvider>
-          <Toaster />
-          <Header />
-          <div className="container xl:max-w-screen-xl">{children}</div>
-        </AuthProvider>
+        <Toaster />
+        <ReactQueryProvider>
+          <AuthProvider>{children}</AuthProvider>
+        </ReactQueryProvider>
       </body>
     </html>
   );
 }
-
 
 // نکته:
 // <clientComponent>
@@ -38,4 +36,4 @@ export default function RootLayout({ children }) {
 
 // 2.
 // "ولی اگر سرور کامپوننت رو "مستقیما" ب کلاینت کامپوننت پاس بدی => ن بعنوان "بچه
-//  دراین صورت اون سرور کامپوننت ب کلاینت کامپوننت تبدیل میشه 
+//  دراین صورت اون سرور کامپوننت ب کلاینت کامپوننت تبدیل میشه

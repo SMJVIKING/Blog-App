@@ -1,42 +1,31 @@
 "use server";
-
-import { createCommentApi } from "@/services/commentService";
-import setCookieOnReq from "@/utils/setCookieOnReq";
-import { revalidatePath } from "next/cache";
+import { createCommentApi } from "../services/commentService";
 import { cookies } from "next/headers";
+import setCookiesOnReq from "../utils/setCookieOnReq";
+import { revalidatePath } from "next/cache";
 
-// export async function createComment(postId, parentId, formData) {
-// prevState : مسیج و ارور قبلی
-
-
-export async function createComment(prevState, {formData , postId, parentId}) {
-  const cookiesStore = cookies();
-
+export async function createComment(prevState, { formData, postId, parentId }) {
+  const cookieStore = cookies();
 
   const rawFormData = {
     text: formData.get("text"),
     postId,
-    parentId
+    parentId,
   };
-
-  try {  
-    const options = setCookieOnReq(cookiesStore);
-    const { message } = await createCommentApi(rawFormData, options);
-    // const { message } = await createCommentApi(rawFormData, options);
-      // update page:
-    // revalidatePath("/blogs/[slug]", "page");
-    revalidatePath("/blogs/[postSlug]");
-    return{
+  
+  try {
+    const options = setCookiesOnReq(cookieStore);
+    const {
+      data: { message },
+    } = await createCommentApi(rawFormData, options);
+    revalidatePath("/blogs");
+    return {
       message,
     };
-    
-  } catch (error) {
-    const errMsg=error?.response?.data?.message;
+  } catch (err) {
+    const error = err?.response?.data?.message;
     return {
-      errMsg,
-    }
+      error,
+    };
   }
 }
-
-// 1. create API for adding comment
-// 2.text - postId - parent

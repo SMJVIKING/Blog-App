@@ -24,7 +24,7 @@ class PostController extends Controller {
     let { search, categorySlug, sort, page, limit } = req.query;
 
     page = page || 1;
-    limit = limit || 6;
+    limit = limit || 10;
     const skip = (page - 1) * limit;
 
     if (search) {

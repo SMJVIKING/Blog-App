@@ -11,6 +11,7 @@ export default function RHFTextField({
 }) {
   const errorMessages = errors?.[name];
   const hasError = !!(errors && errorMessages);
+
   return (
     <div
       className={`textField relative ${hasError ? "textField--invalid" : ""}`}

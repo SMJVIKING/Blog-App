@@ -32,7 +32,7 @@ function SignUp() {
     mode: "onTouched",
   });
 
-  const signup = useAuth();
+  const {signup} = useAuth();
 
   const onSubmit = async (values) => {
     await signup(values);
@@ -94,7 +94,6 @@ export default SignUp;
 
 // react hook form => best solution => we use this package for our project
 // formik
-
 // -------------------------------------------------------------------------------
 // اعتبار سنجی دوتاجا باید انجام بشه =>
 // سمت فرانت و بک اند

@@ -55,6 +55,7 @@ function SignIn() {
           isRequired
           dir="ltr"
           errors={errors}
+          type = "password"
         />
         <div>
           {isLoading ? (

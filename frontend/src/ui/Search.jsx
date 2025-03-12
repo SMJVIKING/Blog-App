@@ -17,6 +17,8 @@ export default function Search() {
     const searchValue = search.value;
     // new URLSearchParams(...): یک نمونه جدید از URLSearchParams می‌سازد که امکان تغییر پارامترها را فراهم می‌کند.
     const newParams = new URLSearchParams(searchParams.toString());
+    newParams.set("page","1");
+    
     if (searchValue) {
       // add key+value:
       newParams.set("search", searchValue);
@@ -24,7 +26,7 @@ export default function Search() {
       // delete key :
       newParams.delete("search");
     }
-    router.push(`${pathName} ? ${newParams.toString()}`, { scroll: false });
+    router.push(`${pathName}?${newParams.toString()}`, { scroll: false });
   };
 
   return (

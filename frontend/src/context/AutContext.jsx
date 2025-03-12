@@ -72,7 +72,7 @@ export default function AuthProvider({ children }) {
     dispatch({ type: "loading" });
 
     try {
-      await new Promise((resolve) => setTimeout(resolve, 3000));
+      // await new Promise((resolve) => setTimeout(resolve, 3000));
       const { user } = await getUserApi();
       dispatch({ type: "user/loaded", payload: user });
     } catch (error) {
@@ -82,9 +82,9 @@ export default function AuthProvider({ children }) {
   }
   // =>
   // برای استفاده کردن از فانکشن بالایی نیازه که  اونو داخل ی یوزافکت بزاریم :
-  // تو یوزافکت هم نمیشه ی فانکشن اسینک رو فراخوانی کردو
-  // هم اینکه نمیشه ارو  فانکشن داخل یوز افکت رو اسینک کرد
-  // خب پس راه راه حل چیه ؟
+  // تو یوزافکت هم نمیشه ی فانکشن اویت رو فراخوانی کردو
+  // و نمیشه ارو فانکشن داخل یوزافکت رو هم اسینک کرد
+  // خب پس راه حل چیه ؟
   // باید داخلش ی اسینک فانکشن جدا تعریف کنی :
   useEffect(() => {
     async function fetchData() {
