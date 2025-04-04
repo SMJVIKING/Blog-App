@@ -1,17 +1,16 @@
+
 import Image from "next/image";
 import RelatedPost from "../_components/RelatedPost";
 import PostComment from "../_components/comment/PostComment";
+import { getPostBySlug } from "@/services/postServices";
+import { notFound } from "next/navigation";
 
-export const dynamic = "force-dynamic";
+async function PostSlug({ params }) {
+  const post = await getPostBySlug(params.postSlug);
 
-async function BlogDetail({ params }) {
-  const res = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/post/slug/${params.postSlug}`,
-    { cache: "no-store" }
-  );
-  const {
-    data: { post },
-  } = await res.json();
+  console.log(post.coverImageUrl);
+
+  if (!post) notFound();
 
   return (
     <div className="text-secondary-600 max-w-screen-md mx-auto">
@@ -20,16 +19,17 @@ async function BlogDetail({ params }) {
       </h1>
       <p className="mb-4">{post.briefText}</p>
       <p className="mb-8">{post.text}</p>
-      <div className="relative aspect-w-16 aspect-h-9 overflow-hidden rounded-lg mb-10">
-        <Image
-          className="object-cover object-center hover:scale-110 transition-all ease-out duration-300"
-          fill
-          src={post.coverImageUrl}
-        />
-      </div>
+      <div className="relative w-full h-96 overflow-hidden rounded-lg mb-10">
+          <Image
+            className="object-cover object-center hover:scale-110 transition-all ease-out duration-300"
+            fill
+            src={post.coverImageUrl}
+            alt={post.title || "Blog image"}
+          />
+        </div>
       {post.related.length > 0 ? <RelatedPost posts={post.related} /> : null}
       <PostComment post={post} />
     </div>
   );
 }
-export default BlogDetail;
+export default PostSlug;
