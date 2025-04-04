@@ -1,9 +1,7 @@
 import { fetchCardData } from "@/services/data";
 import Card from "./Card";
 
-async function CardWrapper() {
-  // await new Promise((resolve)=> setTimeout(resolve,2000));
-    
+async function CardWrapper() { 
   const { numberOfUsers, numberOfPosts, numberOfComments } =
     await fetchCardData();
 

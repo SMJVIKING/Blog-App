@@ -48,6 +48,7 @@ function SignUp() {
           name="name"
           label="نام و نام خانوادگی :"
           register={register}
+           dir="ltr"
           isRequired
           errors={errors}
         />

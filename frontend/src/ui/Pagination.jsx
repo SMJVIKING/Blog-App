@@ -9,6 +9,7 @@ import { ArrowLeftIcon, ArrowRightIcon } from "@heroicons/react/24/outline";
 
 export default function Pagination({ totalPages }) {
   // const totalPages = Math.ceil(Number(length) / itemsPerPage);
+
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const currentPage = Number(searchParams.get("page")) || 1;
@@ -85,7 +86,6 @@ function PaginationNumber({ page, href, isActive, position }) {
     </Link>
   );
 }
-
 
 function PaginationArrow({ href, direction, isDisabled }) {
   const className = classNames(

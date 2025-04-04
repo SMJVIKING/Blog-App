@@ -2,6 +2,7 @@ import Breadcrumbs from "@/ui/Breadcrumbs";
 import CreatePostForm from "./_/CreatePostForm";
 
 function createPostPage() {
+  
   return (
     <div>
       <Breadcrumbs

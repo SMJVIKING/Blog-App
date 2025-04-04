@@ -2,6 +2,7 @@
 
 import { useAuth } from "@/context/AutContext";
 import NavLink from "./NavLink";
+import DarkModeToggle from "@/ui/DarkModeToggle";
 
 const navLinks = [
   {
@@ -35,13 +36,19 @@ function Header() {
               );
             })}
           </div>
-          <li>
-            {user ? (
-              <NavLink path="/profile">پروفایل</NavLink>
-            ) : (
-              <NavLink path="/signin">ورود</NavLink>
-            )}
-          </li>
+          <div className="flex gap-x-10 justify-center items-center">
+            <li>
+              {user ? (
+                <NavLink path="/profile">پروفایل</NavLink>
+              ) : (
+                <NavLink path="/signin">ورود</NavLink>
+              )}
+            </li>
+
+            <li className="">
+              <DarkModeToggle />
+            </li>
+          </div>
         </ul>
       </nav>
     </header>

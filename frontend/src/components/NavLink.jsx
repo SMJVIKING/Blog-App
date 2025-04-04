@@ -8,7 +8,7 @@ function NavLink({ path, children }) {
 
   return (
     <Link
-      className={`block py-2 hover:text-primary-900 transition-all ease-out
+      className={`block text-lg py-2 hover:text-primary-900 transition-all ease-out
         ${pathname === path ? "text-primary-900" : ""}
       `}
       href={path}

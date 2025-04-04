@@ -15,3 +15,13 @@ export async function getUserApi() {
 export async function getAllUsersApi(options = {}) {
   return http.get("/user/list", options).then(({ data }) => data.data);
 }
+
+export async function logoutApi() {
+  return http.post("/user/logout").then(({ data }) => data);
+}
+
+export async function deleteUserApi({ id, options }) {
+  return http
+    .delete(`/user/remove/${id}`, options)
+    .then(({ data }) => data.data);
+}

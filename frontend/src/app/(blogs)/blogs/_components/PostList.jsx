@@ -5,12 +5,6 @@ import { ClockIcon } from "@heroicons/react/24/outline";
 import PostInteraction from "./PostInteraction";
 
 async function PostList({ posts }) {
-  // const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/post/list`);
-  // const {
-  //   // destructure:
-  //   data: { posts },
-  //   // it's an await promise:
-  // } = await res.json();
 
   return posts.length > 0 ? (
     <div className="grid grid-cols-12 gap-8">

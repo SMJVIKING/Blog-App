@@ -173,6 +173,7 @@ class UserAuthController extends Controller {
     return res.status(HttpStatus.OK).json({
       StatusCode: HttpStatus.OK,
       auth: false,
+      message: "با موفقیت از حساب کاربری خود خارج شدید",
     });
   }
 }

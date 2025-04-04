@@ -1,79 +1,37 @@
-import { getPosts } from "@/services/postServices";
-import setCookieOnReq from "@/utils/setCookieOnReq";
-import { cookies } from "next/headers";
-import PostList from "../_components/PostList";
+import Pagination from "@/ui/Pagination";
+import setCookiesOnReq from "@/utils/setCookieOnReq";
 import queryString from "query-string";
+import PostList from "../_components/PostList";
+import { cookies } from "next/headers";
+import { getPosts } from "@/services/postServices";
 
-async function blogPage({ searchParams }) {
+// export const dynamic = "force-dynamic";
+
+async function Page({ searchParams }) {
   const queries = queryString.stringify(searchParams);
+  // set headers:
+  const cookieStore = cookies();
+  const options = setCookiesOnReq(cookieStore);
 
-  const cookieStore = await cookies();
-  const options = setCookieOnReq(cookieStore);
-  const {posts} = await getPosts(queries, options);
+  const { posts } = await getPosts(queries, options);
 
-  const { search } = searchParams;
+  const { q: searchValue } = searchParams;
+
+  const resultsText = posts.length > 1 ? "نتایج" : "نتیجه";
 
   return (
     <>
-      {search ? (
+      {searchValue ? (
         <p className="mb-4 text-secondary-700">
           {posts.length === 0
-            ? "هیچ پستی با این مشخصات یافت نشد."
-            : `نشان دادن نتیجه برای ${posts.length}`}
-          <span className="font-bold"> " {search} "</span>
+            ? "هیچ پستی با این مشخصات یافت نشد"
+            : `نشان دادن ${posts.length} ${resultsText} برای `}
+          <span className="font-bold">&quot;{searchValue}&quot;</span>
         </p>
       ) : null}
-      <PostList posts={posts} />
+
+      {posts.length > 0 ? <PostList posts={posts} /> : null}
     </>
   );
 }
-
-export default blogPage;
-
-// import PostList from "../_components/PostList";
-// import { getPosts } from "@/services/postServices";
-// import { cookies } from "next/headers";
-// import setCookieOnReq from "@/utils/setCookieOnReq";
-// import queryString from "query-string";
-
-// // in next v14 :
-// // export const revalidate = 10;
-// // after 10 => re-build =>
-// //  1.pass time interval =>
-// //  2.new incoming request to rebuild this page =>
-// // update data will be shown to the next user !! => ISR => incremental static re-generation
-
-// // export const exprimental_ppr = true;
-// // اینجا نمیتونه ی صفحه داینامیک و استاتیک باشه =>
-// // و پست لیست داخل ساسپنس قرار بگیره =>
-// // چون عمل فچ کردن دیتارو اینجا انجام میدیم و ب پست لیست دیتا پاس میدیم:
-
-// async function blogPage({ searchParams }) {
-//   // console.log(searchParams);
-//   // اینجا سرچ پارامز رو ک از کامپوننت سرچ میگیریم ب صورت ابجکته دیتاش ولی =>
-//   // این کوئری استرینگ هایی ک ما ب یوارال میدیم  نمیخایم ب صورت ابجکت باشه =>
-//   //  پس از این پکیج استفاده میکنیم : query-string
-//   const queries = queryString.stringify(searchParams);
-
-//   const cookieStore = await cookies();
-//   const options = setCookieOnReq(cookieStore);
-//   // send cookis with posts data:
-//   const posts = await getPosts(queries,options);
-
-//   return (
-//     <div>
-//       {/* static : */}
-//       {/* <div className="text-secondary-500 mb-8 space-y-2">
-//         "جایی برای کشف، یادگیری و الهام گرفتن!" در این بلاگ، جدیدترین مقالات،
-//         راهنماهای کاربردی و نکات تخصصی را در زمینه‌های متنوع پیدا کنید. از
-//         تکنولوژی و طراحی گرفته تا سبک زندگی و رشد فردی همراه ما باشید و هر روز
-//         چیزی جدید یاد بگیرید.
-//       </div> */}
-//       {/* dynamic : */}
-//       {/* <Suspense fallback={<Spinner />}> */}
-//       <PostList posts={posts} />
-//       {/* </Suspense> */}
-//     </div>
-//   );
-// }
-// export default blogPage;
+export default Page;

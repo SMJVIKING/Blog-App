@@ -1,4 +1,4 @@
-import PostsTable from "../posts/_/components/PostsTable";
+import PostsTable from "../posts/_/PostsTable";
 
 function LatestPosts() {
   const query = "sort=latest&limit=5";

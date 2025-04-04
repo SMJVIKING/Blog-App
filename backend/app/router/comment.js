@@ -14,7 +14,9 @@ router.patch(
   verifyAccessToken,
   expressAsyncHandler(CommentController.updateComment)
 );
+
 router.get("/list", expressAsyncHandler(CommentController.getAllComments));
+
 router.delete(
   "/remove/:id",
   verifyAccessToken,

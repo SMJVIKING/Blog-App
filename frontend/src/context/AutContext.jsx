@@ -1,6 +1,6 @@
 "use client";
 
-import { getUserApi, signinApi, signupApi } from "@/services/authService";
+import { getUserApi, logoutApi, signinApi, signupApi } from "@/services/authService";
 import { useRouter } from "next/navigation";
 import { createContext, useContext, useEffect, useReducer } from "react";
 import toast from "react-hot-toast";
@@ -24,6 +24,8 @@ const authReducer = (state, action) => {
       return { isAuthenticated: true, user: action.payload };
     case "signup":
       return { isAuthenticated: true, user: action.payload };
+    case "logout":
+      return { isAuthenticated: false, user: action.payload };
     case "user/loaded":
       return { isAuthenticated: true, user: action.payload };
   }
@@ -67,6 +69,22 @@ export default function AuthProvider({ children }) {
     }
   }
 
+  async function logout(values) {
+    dispatch({ type: "loading" });
+  
+    try {
+      const response = await logoutApi(values);
+      dispatch({ type: "logout" }); 
+      toast.success(response.message);
+      router.push("/signin");
+    } catch (error) {
+      const errorMsg = error?.response?.data?.message || "Something went wrong";
+      dispatch({ type: "rejected", payload: errorMsg });
+      toast.error(errorMsg);
+    }
+  }
+  
+
   // get user data :
   async function getUser() {
     dispatch({ type: "loading" });
@@ -97,7 +115,7 @@ export default function AuthProvider({ children }) {
     <AuthContext.Provider
       // اینجا ما باید "استیت و دیسپچ" پاس بدیم ولی ب جای اینکه اینکارو کنیم و کلی
       // کد توی "کامپوننت ها تکراری" بشه => خود "ساین این و ساین اپو" میاریم اینجا مینویسیم و اونارو پاس میدیم
-      value={{ user, isAuthenticated, isLoading, error, signin, signup }}
+      value={{ user , isAuthenticated , isLoading , error , signin , signup , logout }}
     >
       {children}
     </AuthContext.Provider>
