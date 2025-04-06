@@ -1,7 +1,7 @@
 "use client";
 
 import { useAuth } from "@/context/AutContext";
-// import Avatar from "@/ui/Avatar";
+import Avatar from "@/ui/Avatar";
 import ButtonIcon from "@/ui/ButtonIcon";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
@@ -12,7 +12,7 @@ import Drawer from "@/ui/Drawer";
 function Header({}) {
   const [isOpenDrawer, setIsOpenDrawer] = useState(false);
   const { user, isLoading } = useAuth();
-
+  
   return (
     <header
       className={`bg-secondary-0 ${isLoading ? "bg-opacity-30 blur-md" : ""}`}
@@ -30,7 +30,7 @@ function Header({}) {
           سلام {user?.name}
         </span>
 
-        <Link href="/profile">{/* <Avatar src={user?.avatarUrl} /> */}</Link>
+        <Link href="/profile"><Avatar src={user?.avatarUrl} /></Link>
 
         <Drawer open={isOpenDrawer} onClose={() => setIsOpenDrawer(false)}>
           <SideBar onClose={() => setIsOpenDrawer(false)} />

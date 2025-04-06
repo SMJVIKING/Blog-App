@@ -72,7 +72,6 @@ function CreatePostForm({ postToEdit = {} }) {
     };
   }
   const { isEditing, editPost } = useEditPost();
-
   const { categoriesData } = useCategories();
   const [coverImageUrl, setCoverImageUrl] = useState(prevCoverImageUrl || null);
   const { isCreating, createPost } = useCreatePost();

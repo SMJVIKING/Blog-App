@@ -14,7 +14,7 @@ export default function layout({ children, searchParams }) {
     <>
       <Header />
       <div className="container xl:max-w-screen-xl">{children}</div>
-      <div className="mt-5 flex w-full justify-center">
+      <div className="mt-5 flex w-full justify-center mb-6">
         <Pagination totalPages={totalPages} />
       </div>
     </>

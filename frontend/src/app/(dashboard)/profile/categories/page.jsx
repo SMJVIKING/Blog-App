@@ -1,13 +1,14 @@
 import { Suspense } from "react";
 import Fallback from "@/ui/Fallback";
 import CategoryTable from "./_/CategoryTable";
+import { CreateCategory } from "./_/Buttons";
 
 function page() {
   return (
     <div>
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 text-secondary-600 mb-12 items-center">
+      <div className="flex justify-between items-center text-secondary-600 mb-12">
         <h1 className="text-2xl font-bold">لیست دسته بندی ها</h1>
-        {/* <CreatePost /> */}
+        <CreateCategory />
       </div>
 
       <Suspense fallback={<Fallback />}>

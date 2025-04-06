@@ -14,7 +14,7 @@ async function PostsTable({query = ""}) {
           <Table.Header>
             <th>#</th>
             <th>عنوان</th>
-            <th>دسته بندی</th>
+            <th>متن</th>
             <th>نویسنده</th>
             <th>تاریخ ایجاد</th>
             <th>نوع</th>

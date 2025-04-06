@@ -15,7 +15,6 @@ import {
   BookmarkIcon as SolideBookmarkIcon,
 } from "@heroicons/react/24/solid";
 
-
 function PostInteraction({ post }) {
   // ما نیاز داریم اینجا همراه با لایک کردن پست اطلاعات یوزر رو بفرستیم(توکن ها رو) بک اند ک
   // سایت بفهمه کدوم یوزر کدوم پست رو لایک کرده و
@@ -58,21 +57,24 @@ function PostInteraction({ post }) {
   };
 
   return (
-    <div className="flex items-center gap-x-4">
-    <ButtonIcon variant="secondary">
-      <ChatBubbleOvalLeftEllipsisIcon />
-      <span>{toPersianDigits(post.commentsCount)}</span>
-    </ButtonIcon>
+    <div className="flex items-center justify-between">
+      <div className="flex items-center gap-x-2">
+        <ButtonIcon variant="secondary">
+          <ChatBubbleOvalLeftEllipsisIcon />
+          <span>{toPersianDigits(post.commentsCount)}</span>
+        </ButtonIcon>
+        <ButtonIcon onClick={() => likeHandler(post._id)} variant="red">
+          {post.isLiked ? <SolidHeartIcon /> : <HeartIcon />}
+          <span>{toPersianDigits(post.likesCount)}</span>
+        </ButtonIcon>
+      </div>
 
-    <ButtonIcon onClick={() => likeHandler(post._id)} variant="red">
-      {post.isLiked ? <SolidHeartIcon /> : <HeartIcon />}
-      <span>{toPersianDigits(post.likesCount)}</span>
-    </ButtonIcon>
-
-    <ButtonIcon onClick={() => bookmarkHandler(post._id)} variant="primary">
-      {post.isBookmarked ? <SolideBookmarkIcon /> : <BookmarkIcon />}
-    </ButtonIcon>
-  </div>
+      <div>
+        <ButtonIcon onClick={() => bookmarkHandler(post._id)} variant="primary">
+          {post.isBookmarked ? <SolideBookmarkIcon /> : <BookmarkIcon />}
+        </ButtonIcon>
+      </div>
+    </div>
   );
 }
 

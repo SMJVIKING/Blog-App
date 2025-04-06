@@ -49,7 +49,7 @@ export function DeletePost({ post: { _id: id, title } }) {
               {
                 onSuccess: () => {
                   setIsOpen(false);
-                  router.refresh("/profile/posts");
+                   router.refresh("/profile/posts");
                 },
               }
             );

@@ -1,11 +1,9 @@
-import { getCategorySlug } from "@/services/categoryService";
 import PostList from "app/(blogs)/blogs/_components/PostList";
-import queryString from "query-string";
 
 async function Category({ params }) {
   const { categorySlug } = params;
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/post/list?categorySlug=${categorySlug}`
+    `${process.env.NEXT_PUBLIC_BASE_URL}/post/list?categorySlug=${categorySlug}`
   );
   const {
     data: { posts },

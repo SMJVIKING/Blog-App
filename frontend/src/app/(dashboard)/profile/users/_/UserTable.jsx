@@ -16,12 +16,10 @@ async function UsersTable() {
     <Table>
       <Table.Header>
         <th>#</th>
+        <td>پروفایل</td>
         <th>نام کاربر</th>
         <th>ایمیل کاربر</th>
         <th>تاریخ ورود</th>
-        <th>پست های لایک شده</th>
-        <th>پست های سیو شده</th>
-        <th>عملیات</th>
       </Table.Header>
 
       <Table.Body>

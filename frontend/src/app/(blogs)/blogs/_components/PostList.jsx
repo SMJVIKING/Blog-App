@@ -19,13 +19,13 @@ async function PostList({ posts }) {
           {/* post title: */}
           <div>
             <Link href={`/blogs/${post.slug}`}>
-              <h2 className="mb-4 font-bold text-secondary-700">
+              <h2 className="mb-6 font-bold text-secondary-700">
                 {post.title}
               </h2>
             </Link>
 
             {/* post author: */}
-            <div className="flex items-center justify-between">
+            <div className="flex items-center justify-between mb-4">
               <Author {...post.author} />
 
               <div className="flex items-center text-[10px] text-secondary-500">

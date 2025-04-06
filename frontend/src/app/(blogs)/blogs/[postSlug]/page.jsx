@@ -1,4 +1,3 @@
-
 import Image from "next/image";
 import RelatedPost from "../_components/RelatedPost";
 import PostComment from "../_components/comment/PostComment";
@@ -7,8 +6,6 @@ import { notFound } from "next/navigation";
 
 async function PostSlug({ params }) {
   const post = await getPostBySlug(params.postSlug);
-
-  console.log(post.coverImageUrl);
 
   if (!post) notFound();
 

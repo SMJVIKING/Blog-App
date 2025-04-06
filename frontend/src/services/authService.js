@@ -20,8 +20,8 @@ export async function logoutApi() {
   return http.post("/user/logout").then(({ data }) => data);
 }
 
-export async function deleteUserApi({ id, options }) {
+export async function uploadAvatarApi(formData, options = {}) {
   return http
-    .delete(`/user/remove/${id}`, options)
+    .post("/user/upload-avatar", formData, options)
     .then(({ data }) => data.data);
 }

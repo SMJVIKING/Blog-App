@@ -3,16 +3,11 @@ import Fallback from "@/ui/Fallback";
 import Search from "@/ui/Search";
 import { CreatePost } from "./_/Buttons";
 import queryString from "query-string";
-import { getPosts } from "@/services/postServices";
-import Pagination from "@/ui/Pagination";
 import PostsTable from "./_/PostsTable";
 
 function page({ searchParams }) {
   const queries = queryString.stringify(searchParams);
 
-  const { totalPages } = getPosts(queries);  
-
-  // we get this data from backend : totalPages
   return (
     <div>
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 text-secondary-600 mb-12 items-center">
@@ -24,10 +19,6 @@ function page({ searchParams }) {
       <Suspense fallback={<Fallback />} key={queries}>
         <PostsTable query={queries} />
       </Suspense>
-
-      <div className="mt-4 w-full flex justify-center">
-        <Pagination totalPages={totalPages}/>
-      </div>
     </div>
   );
 }

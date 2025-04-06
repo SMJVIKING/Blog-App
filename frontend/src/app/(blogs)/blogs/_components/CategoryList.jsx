@@ -6,7 +6,6 @@ async function CategoryList() {
   const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/category/list`,{
     cashe:"force-cache",
 });
-
   const {
     // destructure:
     data: { categories },

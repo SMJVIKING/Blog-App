@@ -1,4 +1,3 @@
-import Pagination from "@/ui/Pagination";
 import setCookiesOnReq from "@/utils/setCookieOnReq";
 import queryString from "query-string";
 import PostList from "../_components/PostList";

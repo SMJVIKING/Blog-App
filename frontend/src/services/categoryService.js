@@ -10,8 +10,12 @@ export async function deleteCategoryApi({id,options}) {
   .then(({ data }) => data.data);
 }
 
-// export async function updateCategoryApi({ id, options }) {
-//   return http
-//     .patch(`/category/update/${id}`, options)
-//     .then(({ data }) => data.data);
-// }
+export async function editCategoryApi({ id, data }) {
+  return http
+    .patch(`/category/update/${id}`, data)
+    .then(({ data }) => data.data);
+}
+
+export async function createCategoryApi(data) {
+  return http.post(`/category/add`, data).then(({ data }) => data.data);
+}

@@ -18,13 +18,13 @@ function PostRow({ post, index }) {
     },
   };
 
-  const { title, category, author, createdAt, type } = post;
+  const { title, text, author, createdAt, type } = post;
 
   return (
     <Table.Row>
       <td>{toPersianDigits(index + 1)}</td>
       <td>{truncateText(title, 30)}</td>
-      <td>{category}</td>
+      <td>{truncateText(text, 30)}</td>
       <td>{author.name}</td>
       <td>{toLocalDateShort(createdAt)}</td>
       <td>
