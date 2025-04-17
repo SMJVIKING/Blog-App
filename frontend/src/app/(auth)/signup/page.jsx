@@ -22,15 +22,13 @@ import Button from "@/ui/Button";
 import RHFTextField from "@/ui/RHFTextField";
 import SpinnerMini from "@/ui/SpinnerMini";
 import { useAuth } from "@/context/AutContext";
-import UploadAvatarImage from "../_/UploadAvatarImage";
 
 
 const schema = yup
   .object({
     name: yup.string().min(5).max(30).required("نام و نام خانوادگی الزامی است"),
     email: yup.string().email("ایمیل نامعتبر است").required("ایمیل الزامی است"),
-    password: yup.string().required("رمز عبور الزامی است"),
-    coverImage: yup.string().required("آپلود عکس الزامی است")
+    password: yup.string().required("رمز عبور الزامی است")
   })
   .required();
 
@@ -39,8 +37,6 @@ const {
   register,
   handleSubmit,
   formState: { errors, isLoading },
-  control,
-  setValue,
 } = useForm({
   resolver: yupResolver(schema),
   mode: "onTouched",
@@ -60,8 +56,6 @@ const {
       </h1>
 
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-10">
-      <UploadAvatarImage control={control} setValue={setValue} />
-
         <RHFTextField
           name="name"
           label="نام و نام خانوادگی :"

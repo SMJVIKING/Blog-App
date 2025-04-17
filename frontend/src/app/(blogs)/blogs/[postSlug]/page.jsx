@@ -1,13 +1,17 @@
+import BlogComments from "@/components/blog/comments/BlogComments";
+import RelatedPost from "@/components/blog/RelatedPost";
 import Image from "next/image";
-import RelatedPost from "../_components/RelatedPost";
-import PostComment from "../_components/comment/PostComment";
-import { getPostBySlug } from "@/services/postServices";
-import { notFound } from "next/navigation";
 
-async function PostSlug({ params }) {
-  const post = await getPostBySlug(params.postSlug);
+export const dynamic = "force-dynamic";
 
-  if (!post) notFound();
+async function BlogDetail({ params }) {
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_BASE_URL}/post/slug/${params.postSlug}`,
+    { cache: "no-store" }
+  );
+  const {
+    data: { post },
+  } = await res.json();
 
   return (
     <div className="text-secondary-600 max-w-screen-md mx-auto">
@@ -16,17 +20,17 @@ async function PostSlug({ params }) {
       </h1>
       <p className="mb-4">{post.briefText}</p>
       <p className="mb-8">{post.text}</p>
-      <div className="relative w-full h-96 overflow-hidden rounded-lg mb-10">
-          <Image
-            className="object-cover object-center hover:scale-110 transition-all ease-out duration-300"
-            fill
-            src={post.coverImageUrl}
-            alt={post.title || "Blog image"}
-          />
-        </div>
+      <div className="relative aspect-[16/9] overflow-hidden rounded-lg mb-10">
+        <Image
+          className="object-cover object-center hover:scale-110 transition-all ease-out duration-300"
+          fill
+          src={post.coverImageUrl}
+          alt="Post cover"
+        />
+      </div>
       {post.related.length > 0 ? <RelatedPost posts={post.related} /> : null}
-      <PostComment post={post} />
+      <BlogComments post={post} />
     </div>
   );
 }
-export default PostSlug;
+export default BlogDetail;

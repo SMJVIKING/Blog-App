@@ -15,7 +15,6 @@ async function PostsTable({query = ""}) {
             <th>#</th>
             <th>عنوان</th>
             <th>متن</th>
-            <th>نویسنده</th>
             <th>تاریخ ایجاد</th>
             <th>نوع</th>
             <th>عملیات</th>

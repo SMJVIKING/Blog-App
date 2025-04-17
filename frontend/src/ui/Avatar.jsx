@@ -1,14 +1,16 @@
 import Image from "next/image";
 
-function Avatar({ src}) {
+function Avatar({ src }) {
   return (
-    <Image
-      src={src}
-      alt="avatar image"
-      width={24} 
-      height={24} 
-      className="rounded-full ring-1 ring-secondary-300 ml-2"
-    />
+    <div className="w-7 h-7 relative rounded-full ring-1 ring-secondary-300 ml-2 overflow-hidden">
+      <Image
+        src={src}
+        alt="avatar image"
+        fill
+        className="object-cover"
+      />
+    </div>
   );
 }
+
 export default Avatar;

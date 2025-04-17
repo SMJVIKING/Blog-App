@@ -2,7 +2,7 @@ import http from "./httpService";
 
 export async function getPostBySlug(slug) {
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/post/${slug}`
+    `${process.env.NEXT_PUBLIC_BASE_URL}/post/slug/${slug}`
   );
   // const {
   //   data: { post },
