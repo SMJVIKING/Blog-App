@@ -4,21 +4,6 @@ import Search from "@/ui/Search";
 import Spinner from "@/ui/Spinner";
 import { Suspense } from "react";
 
-const statusOptions = [
-  {
-    label: "همه",
-    value: "ALL",
-  },
-  {
-    label: "باز",
-    value: "OPEN",
-  },
-  {
-    label: "بسته",
-    value: "CLOSED",
-  },
-];
-
 function Layout({ children }) {
   return (
     <div>

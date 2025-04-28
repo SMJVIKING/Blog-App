@@ -3,9 +3,17 @@
 import useOutsideClick from "@/hooks/useOutsideClick";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 import { createPortal } from "react-dom";
+import { useEffect, useState } from "react";
 
 function Modal({ open, onClose, title, children, description = "" }) {
   const ref = useOutsideClick(onClose);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) return null; // صبر کن تا کلاینت کامل لود بشه
 
   return (
     open &&
@@ -42,7 +50,6 @@ function Modal({ open, onClose, title, children, description = "" }) {
   );
 }
 export default Modal;
-
 
 // what createPortal do ?
 // help use to select the place to run our component

@@ -13,14 +13,6 @@ async function Page({ searchParams }) {
   const cookieStore = cookies();
   const options = setCookiesOnReq(cookieStore);
 
-  // const res = await fetch(
-  //   `${process.env.NEXT_PUBLIC_API_URL}/post/list?${queries}`,
-  //   { cache: "no-store", ...options }
-  // );
-  // const {
-  //   data: { posts },
-  // } = await res.json();
-
   const { posts, totalPages } = await getPosts(queries, options);
 
   const { q: searchValue } = searchParams;

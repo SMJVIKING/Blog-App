@@ -1,6 +1,17 @@
+'use client';
+
 import { createPortal } from "react-dom";
+import { useEffect, useState } from "react";
 
 function Drawer({ open, onClose, children }) {
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) return null; // هنوز کلاینت نیستیم، چیزی رندر نکن
+
   return createPortal(
     <>
       <div

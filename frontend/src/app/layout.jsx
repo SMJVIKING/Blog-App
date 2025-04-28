@@ -1,9 +1,6 @@
 import vazirFont from "@/constants/localFont";
-import AuthProvider from "@/context/AutContext";
-import { DarkModeProvider } from "@/context/DarkModeContext";
 import ReactQueryProvider from "@/providers/ReactQueryProvider";
 import "@/styles/globals.css";
-import { Toaster } from "react-hot-toast";
 
 export const metadata = {
   title: {
@@ -17,16 +14,14 @@ export default function RootLayout({ children }) {
   return (
     <html lang="fa" dir="rtl">
       <body className={`${vazirFont.variable} font-sans min-h-screen`}>
-        <Toaster />
-        <DarkModeProvider>
-          <ReactQueryProvider>
-            <AuthProvider>{children}</AuthProvider>
-          </ReactQueryProvider>
-        </DarkModeProvider>
+        <ReactQueryProvider>
+          {children}
+        </ReactQueryProvider>
       </body>
     </html>
   );
 }
+
 
 // نکته:
 // <clientComponent>

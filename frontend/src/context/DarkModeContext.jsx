@@ -3,15 +3,23 @@
 import useLocalStorageState from "@/hooks/useLocalStorageState";
 import { createContext, useContext, useEffect } from "react";
 
-
 const DarkModeContext = createContext();
 
 export function DarkModeProvider({ children }) {
   const [isDarkMode, setIsDarkMode] = useLocalStorageState(
     "isDarkMoode",
-    // این بخش تم سایت رو مطابق با تم سیستم ست میکنه ینی دارک باشه دارک و بالعکس
-    window.matchMedia("(prefers-color-scheme:dark)").matches //true/false);
+    false // مقدار پیشفرض امن برای سرور
   );
+
+  // بعداً مقدار اولیه رو توی useEffect آپدیت کن
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+        // این بخش تم سایت رو مطابق با تم سیستم ست میکنه ینی دارک باشه دارک و بالعکس
+      const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+      setIsDarkMode(prev => (prev === false ? prefersDark : prev));
+    }
+  }, []);
+  
 
   const toggleDarkMode = () => setIsDarkMode((prev) => !prev);
 
@@ -24,8 +32,6 @@ export function DarkModeProvider({ children }) {
       document.documentElement.classList.remove("dark-mode");
     }
   }, [isDarkMode]);
-  // نکته: ب جای این روش ک ما فقط از سی اس اس استفاده کردیم
-  // میشه از خود تیلویند هم برای ایجاد دارک مود استفاده کرد
 
   return (
     <DarkModeContext.Provider value={{ isDarkMode, toggleDarkMode }}>
@@ -42,6 +48,7 @@ export function useDarkMode() {
 
   return context;
 }
+
 
 // steps:
 // 1.create context

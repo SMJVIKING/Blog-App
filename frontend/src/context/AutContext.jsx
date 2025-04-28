@@ -69,11 +69,11 @@ export default function AuthProvider({ children }) {
     }
   }
 
-  async function logout(values) {
+  async function logout() {
     dispatch({ type: "loading" });
   
     try {
-      const response = await logoutApi(values);
+      const response = await logoutApi();
       dispatch({ type: "logout" }); 
       toast.success(response.message);
       router.push("/signin");
@@ -83,7 +83,6 @@ export default function AuthProvider({ children }) {
       toast.error(errorMsg);
     }
   }
-  
 
   // get user data :
   async function getUser() {
