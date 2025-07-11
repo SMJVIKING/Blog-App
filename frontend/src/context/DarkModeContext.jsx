@@ -13,12 +13,17 @@ export function DarkModeProvider({ children }) {
 
   // بعداً مقدار اولیه رو توی useEffect آپدیت کن
   useEffect(() => {
-    if (typeof window !== 'undefined') {
-        // این بخش تم سایت رو مطابق با تم سیستم ست میکنه ینی دارک باشه دارک و بالعکس
-      const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-      setIsDarkMode(prev => (prev === false ? prefersDark : prev));
+    if (typeof window !== "undefined") {
+      const storedValue = localStorage.getItem("isDarkMoode");
+  
+      if (storedValue === null) {
+         // این بخش تم سایت رو مطابق با تم سیستم ست میکنه ینی دارک باشه دارک و بالعکس
+        const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+        setIsDarkMode(prefersDark);
+      }
     }
   }, []);
+  
   
 
   const toggleDarkMode = () => setIsDarkMode((prev) => !prev);

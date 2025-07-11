@@ -1,6 +1,7 @@
 import Header from "./profile/_components/Header";
 import SideBar from "./profile/_components/Sidebar";
 
+
 export const metadata = {
   title: "پروفایل",
   description: "پروفایل",
