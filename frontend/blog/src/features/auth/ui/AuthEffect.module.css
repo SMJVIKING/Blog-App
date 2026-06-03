@@ -1,0 +1,27 @@
+/* مدل زاویه‌دار و مهندسی */
+.clipCut {
+  transition: all 0.4s ease-in-out;
+}
+
+@media (min-width: 1024px) {
+  .clipCut {
+    clip-path: polygon(
+      0% 0%,
+      38% 0%,
+      42% 20px,
+      /* عمق ۲۰ پیکسل با زاویه تند */ 58% 20px,
+      62% 0%,
+      100% 0%,
+      100% 100%,
+      0% 100%
+    );
+  }
+}
+
+/* در حالت موبایل فقط گوشه‌ها گرد باشند تا محتوا بهتر دیده شود */
+@media (max-width: 1023px) {
+  .clipCut {
+    border-radius: 1.5rem;
+    clip-path: none;
+  }
+}

@@ -1,0 +1,19 @@
+@keyframes rotate-circle {
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+  25% {
+    transform: translate(12px, 12px);
+  }
+  50% {
+    transform: translate(0, 24px);
+  }
+  75% {
+    transform: translate(-12px, 12px);
+  }
+}
+
+.animateCircle {
+  animation: rotate-circle 6s infinite cubic-bezier(0.45, 0.05, 0.55, 0.95);
+}
